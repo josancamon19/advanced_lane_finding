@@ -46,7 +46,8 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 #### 1. Provide an example of a distortion-corrected image.
 
 To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
-![alt text][image2]
+
+<img src="/results/1_image_undistorted.png" alt="undistorted" width="1000"/>
 
 #### 2. Describe how you used color transforms, gradients or other methods to create a thresholded binary image. Provide an example of a binary image result.
 
@@ -75,11 +76,23 @@ Then I did some other stuff and fit my lane lines with a 2nd order polynomial ki
 
 #### 5. Describe how (and identify where in your code) you calculated the radius of curvature of the lane and the position of the vehicle with respect to center.
 
-I did this in lines # through # in my code in `my_other_file.py`
+I did this in lines first cell in the section 5. Draw lanes plane in the Jupyter Notebook.
+
+1. I built some fake lines
+2. Fitted a second order polynomial to pixel positions in each fake lane line
+3. Defined conversions in x and y from pixels space to meters
+4. Fitted new polynomials to x,y in world space
+5. Calculated the new radius of curvature
+
 
 #### 6. Provide an example image of your result plotted back down onto the road such that the lane area is identified clearly.
 
-I implemented this step in lines # through # in my code in `yet_another_file.py` in the function `map_lane()`.  Here is an example of my result on a test image:
+I implemented this step in the first three cells in the section 6. set metrics of the Jupyter Notebook.
+
+1. Calculated radius of curvature
+2. Calculated car offset
+3. Display lane curvature using cv2.PutText
+4. Display car offset
 
 <img src="/results/7_image_metrics.png" alt="metrics" width="1000"/>
 ---
@@ -98,4 +111,5 @@ Here's a [link to my video result](./videos/project_video_result.mp4)
 
 Here I'll talk about the approach I took, what techniques I used, what worked and why, where the pipeline might fail and how I might improve it if I were going to pursue this project further. 
 
+The most important thing I want to discuss, is the thresholds, that's basically the reason behind the error in the harder video challenge, the thresholds work great basically, but I only used 2 thresholds, the first threshold the S channel of the HLS color space and then I applied a sobelx, so, it worked great doing the task required, but the better approach in order to build a better pipeline would be using more thresholds to gain as much information as possible and remove all interference and noise that is giving us problems in harder scenarios, thresholds like the thresholding the pixels magnitud, thresholding the direction of the pixels,the other sobel, and others .
 
